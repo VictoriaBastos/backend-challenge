@@ -2,7 +2,9 @@ package com.challenge.api.PasswordValidation.core.usecase;
 
 import com.challenge.api.PasswordValidation.core.domain.Password;
 import com.challenge.api.PasswordValidation.port.in.PasswordValidationInputPort;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PasswordValidationService implements PasswordValidationInputPort {
     @Override
     public boolean validatePassword(Password password) {
