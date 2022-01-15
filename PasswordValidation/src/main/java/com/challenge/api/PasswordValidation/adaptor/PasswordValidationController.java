@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/usuario")
@@ -18,7 +20,7 @@ public class PasswordValidationController {
     private PasswordValidationInputPort port;
 
     @PostMapping("/senha")
-    public ResponseEntity<PasswordDTO> validateUserPassword(@RequestBody PasswordForm passwordForm){
+    public ResponseEntity<PasswordDTO> validateUserPassword(@RequestBody @Valid PasswordForm passwordForm){
         boolean passwordChecked = port.validatePassword(passwordForm.toDomain());
         try{
             return ResponseEntity.ok().body(new PasswordDTO(passwordChecked));
@@ -26,5 +28,4 @@ public class PasswordValidationController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
 }
