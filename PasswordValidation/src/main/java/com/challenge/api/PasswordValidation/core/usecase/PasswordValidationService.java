@@ -3,7 +3,6 @@ package com.challenge.api.PasswordValidation.core.usecase;
 import com.challenge.api.PasswordValidation.core.domain.Password;
 import com.challenge.api.PasswordValidation.port.in.PasswordValidationInputPort;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +12,12 @@ public class PasswordValidationService implements PasswordValidationInputPort {
     public boolean validatePassword(Password password) {
         String userPassword = password.getPassword();
 
-        boolean hasDigit = userPassword.replaceAll("[0-9]","").length() != userPassword.length();
-        boolean hasLowerCase = userPassword.replaceAll("[a-z]","").length() != userPassword.length();
-        boolean hasUpperCase = userPassword.replaceAll("[A-Z]","").length() != userPassword.length();
-        boolean hasSpecialCharacter = userPassword.replaceAll("[!@#$%^&*()-+]","").length() != userPassword.length();
-
-        if(!hasDigit || !hasLowerCase || !hasUpperCase || !hasSpecialCharacter){
-            return false;
+        // Checking if hasDigit, hasLowerCase, hasUpperCase, hasSpecialCharacter
+        String[] myRegexGroup = {"[0-9]","[a-z]","[A-Z]","[!@#$%^&*()-+]"};
+        for(String myRegex : myRegexGroup){
+            if(userPassword.replaceAll(myRegex,"").length() == userPassword.length()){
+                return false;
+            }
         }
 
         // Checking for duplicated characters

@@ -31,4 +31,60 @@ public class PasswordValidationServiceTest {
 
         Assertions.assertEquals(validPassword,true);
     }
+
+    @Test
+    public void passwordWithoutDigit(){
+        Password passwordUser = new Password("ANDYlbst*");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
+
+    @Test
+    public void passwordWithoutLowerCase(){
+        Password passwordUser = new Password("ANDY1968*");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
+
+    @Test
+    public void passwordWithoutUpperCase(){
+        Password passwordUser = new Password("andy1968*");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
+
+    @Test
+    public void passwordWithoutSpecialCharacter(){
+        Password passwordUser = new Password("Andy1968S");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
+
+    @Test
+    public void passwordWithoutDuplicatedCharacters(){
+        Password passwordUser = new Password("AAndy1968*");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
+
+    @Test
+    public void passwordLengthIsNotEnough(){
+        Password passwordUser = new Password("Andy196*");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
+
+    @Test
+    public void passwordWithoutBlankSpaces(){
+        Password passwordUser = new Password("Andy 1968*");
+        boolean validPassword = passwordService.validatePassword(passwordUser);
+
+        Assertions.assertEquals(validPassword,false);
+    }
 }
