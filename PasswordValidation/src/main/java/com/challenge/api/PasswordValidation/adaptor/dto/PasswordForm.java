@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class PasswordForm {
     @NotNull(message = "Password is Null")
     private String password;
