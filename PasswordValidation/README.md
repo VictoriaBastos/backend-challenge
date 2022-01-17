@@ -1,4 +1,16 @@
+
 # Descrição
+
+API web em Java e Springboot que realiza a validação de senhas.
+
+A API apresenta um método HTTP POST que recebe as solicitações do cliente e retorna a verificação de validação da senha, sendo essa um boolean true ou false.
+
+A construção da API apresenta uma interpretação da arquiteutra hexagonal, tendo sido dividida em 3 principais camadas: core, port e adaptor.
+
+As regras de validação de senha foram tratadas como regras de negócio presentes na camada de serviço, no core da aplicação. 
+
+
+## Critérios de Validação da Senha:
 
 Considere uma senha sendo válida quando a mesma possuir as seguintes definições:
 
@@ -23,46 +35,71 @@ IsValid("AbTp9 fok") // false
 IsValid("AbTp9!fok") // true
 ```
 
-> **_Nota:_**  Espaços em branco não devem ser considerados como caracteres válidos.
+> **_Nota:_**  Espaços em branco não devem ser considerados como caracteres válidos.</br>
+> _____Letras foram consideradas caracteres diferentes em suas formas maiúscula e minúscula. Ex: A != a
 
-## Problema
+## Tecnologias Utilizadas
+- Java
+- SpringBoot
+- Lombok
+- Validation
+- JUnit
 
-Construa uma aplicação que exponha uma api web que valide se uma senha é válida.
+## Arquitetura Hexagonal
 
-Input: Uma senha (string).  
-Output: Um boolean indicando se a senha é válida.
+Vizualização da aplicação organizada em 3 principais camadas: core, port e adaptor.
 
-Embora nossas aplicações sejam escritas em Kotlin e C# (.net core), você não precisa escrever sua solução usando elas. Use a linguagem de programação que considera ter mais conhecimento.
+<img src="./assets/archHex.PNG">
 
-## Pontos que daremos maior atenção
+## Instruções para execução do projeto
+- No terminal, faça o clone da aplicação:
 
-- Testes de unidade / integração
-- Abstração, acoplamento, extensibilidade e coesão
-- Design de API
-- Clean Code
-- SOLID
-- Documentação da solução no *README* 
+``git clone https://github.com/VictoriaBastos/backend-challenge.git``
 
-## Pontos que não iremos avaliar
+- A aplicação está localizada na branch "victoria-bastos"
 
-- docker file
-- scripts ci/cd
-- coleções do postman ou ferramentas para execução
+``git checkout victoria-bastos``
+- Navegue até a pasta raiz do projeto 
 
-### Sobre a documentação
+``cd PasswordValidation/``
 
-Nesta etapa do processo seletivo queremos entender as decisões por trás do código, portanto é fundamental que o *README* tenha algumas informações referentes a sua solução.
+- Após acessar a branch acima, abra a 
+- Abra a aplicação na IDE de sua preferência e execute o projeto.
+- Utilize o Postman ou Insominia para chamar os endpoints da API localmente.
+  - Local: http://localhost:8080
 
-Algumas dicas do que esperamos ver são:
+## Rotas
 
-- Instruções básicas de como executar o projeto;
-- Detalhes sobre a sua solução, gostariamos de saber qual foi seu racional nas decisões;
-- Caso algo não esteja claro e você precisou assumir alguma premissa, quais foram e o que te motivou a tomar essas decisões.
+| Método HTTP | Tipo Rota | Endpoint                               | Descrição                         |
+|-------------| --------- |----------------------------------------|-----------------------------------|
+| POST        | Pública   | `http://localhost:8080/usuario/senha` | Recebe senha e retorna validação. |     
 
-## Como esperamos receber sua solução
+### Input
+A aplicação espera receber uma requisição POST com um json no seguinte formato:
 
-Esta etapa é eliminatória, e por isso esperamos que o código reflita essa importância.
+``{ "password":"Andy1978#" }``
 
-Se tiver algum imprevisto, dúvida ou problema, por favor entre em contato com a gente, estamos aqui para ajudar.
+### Output
+A aplicação deverá retornar um json contendo um valor booleano:
 
-Nos envie o link de um repo público com a sua solução.
+`` {
+      "senha validada:": true
+}``
+
+`` {
+"senha validada:": false
+}``
+
+####Se a senha for nula a aplicação retorna uma exceção:
+
+``{
+"status": "BAD_REQUEST",
+"message": "Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.challenge.api.PasswordValidation.adaptor.dto.PasswordDTO> com.challenge.api.PasswordValidation.adaptor.PasswordValidationController.validateUserPassword(com.challenge.api.PasswordValidation.adaptor.dto.PasswordForm): [Field error in object 'passwordForm' on field 'password': rejected value [null]; codes [NotNull.passwordForm.password,NotNull.password,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [passwordForm.password,password]; arguments []; default message [password]]; default message [Password is Null]] ",
+"errors": [
+"password: Password is Null"
+]
+}``
+
+
+
+
