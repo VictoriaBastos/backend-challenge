@@ -1,5 +1,7 @@
 
-# Descrição
+# Password Validation Api
+
+##Descrição
 
 API web em Java e Springboot que realiza a validação de senhas.
 
@@ -38,18 +40,20 @@ IsValid("AbTp9!fok") // true
 > **_Nota:_**  Espaços em branco não devem ser considerados como caracteres válidos.</br>
 > _____Letras foram consideradas caracteres diferentes em suas formas maiúscula e minúscula. Ex: A != a
 
-## Tecnologias Utilizadas
-- Java
-- SpringBoot
-- Lombok
-- Validation
-- JUnit
 
-## Arquitetura Hexagonal
+
+## Estrutura da Aplicação
 
 Vizualização da aplicação organizada em 3 principais camadas: core, port e adaptor.
 
 <img src="./assets/archHex.PNG">
+
+## Tecnologias Utilizadas
+Para executar e fazer alterações no projeto, será necessário instalar:
+
+- JDK
+- Maven
+- IntelliJ/Eclipse
 
 ## Instruções para execução do projeto
 - No terminal, faça o clone da aplicação:
@@ -63,8 +67,17 @@ Vizualização da aplicação organizada em 3 principais camadas: core, port e a
 
 ``cd PasswordValidation/``
 
-- Após acessar a branch acima, abra a 
-- Abra a aplicação na IDE de sua preferência e execute o projeto.
+- Para executar a API via linha de comando, execute os seguinte comando Maven:
+
+`` mvn clean install``
+
+``mvn spring-boot:run``
+
+
+
+- Você também pode rodar a API utilizando a IDE de sua preferência e executando a classe *Application. 
+
+
 - Utilize o Postman ou Insominia para chamar os endpoints da API localmente.
   - Local: http://localhost:8080
 
@@ -77,28 +90,31 @@ Vizualização da aplicação organizada em 3 principais camadas: core, port e a
 ### Input
 A aplicação espera receber uma requisição POST com um json no seguinte formato:
 
-``{ "password":"Andy1978#" }``
+    { 
+        "password":"Andy1978#" 
+    }
 
 ### Output
 A aplicação deverá retornar um json contendo um valor booleano:
 
-`` {
-      "senha validada:": true
-}``
+    {
+        "senha validada:": true
+    }
+<br>
+    
+    {
+        "senha validada:": false
+    }
 
-`` {
-"senha validada:": false
-}``
+Se a senha for nula a aplicação retorna uma exceção:
 
-####Se a senha for nula a aplicação retorna uma exceção:
-
-``{
-"status": "BAD_REQUEST",
-"message": "Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.challenge.api.PasswordValidation.adaptor.dto.PasswordDTO> com.challenge.api.PasswordValidation.adaptor.PasswordValidationController.validateUserPassword(com.challenge.api.PasswordValidation.adaptor.dto.PasswordForm): [Field error in object 'passwordForm' on field 'password': rejected value [null]; codes [NotNull.passwordForm.password,NotNull.password,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [passwordForm.password,password]; arguments []; default message [password]]; default message [Password is Null]] ",
-"errors": [
-"password: Password is Null"
-]
-}``
+    {
+        "status": "BAD_REQUEST",
+        "message": "Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.challenge.api.PasswordValidation.adaptor.dto.PasswordDTO> com.challenge.api.PasswordValidation.adaptor.PasswordValidationController.validateUserPassword(com.challenge.api.PasswordValidation.adaptor.dto.PasswordForm): [Field error in object 'passwordForm' on field 'password': rejected value [null]; codes [NotNull.passwordForm.password,NotNull.password,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [passwordForm.password,password]; arguments []; default message [password]]; default message [Password is Null]] ",
+        "errors": [
+            "password: Password is Null"
+        ]
+    }
 
 
 
