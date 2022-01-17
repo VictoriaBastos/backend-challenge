@@ -2,7 +2,6 @@ package com.challenge.PasswordValidation.config.valid;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-
 import java.util.Arrays;
 import java.util.List;
 
