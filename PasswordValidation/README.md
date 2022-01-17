@@ -46,7 +46,7 @@ IsValid("AbTp9!fok") // true
 
 Vizualização da aplicação organizada em 3 principais camadas: core, port e adaptor.
 
-<img src="./assets/archHex.PNG">
+<img src="./assets/archHex.png">
 
 ## Tecnologias Utilizadas
 Para executar e fazer alterações no projeto, será necessário instalar:
