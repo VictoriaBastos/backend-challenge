@@ -60,9 +60,6 @@ Para executar e fazer alterações no projeto, será necessário instalar:
 
 ``git clone https://github.com/VictoriaBastos/backend-challenge.git``
 
-- A aplicação está localizada na branch "victoria-bastos"
-
-``git checkout victoria-bastos``
 - Navegue até a pasta raiz do projeto 
 
 ``cd PasswordValidation/``
