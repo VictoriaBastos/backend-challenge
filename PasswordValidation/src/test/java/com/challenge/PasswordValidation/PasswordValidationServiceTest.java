@@ -37,7 +37,7 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("ANDYlbst*");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("ANDY1968*");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("andy1968*");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("Andy1968S");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("AAndy1968*");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("Andy196*");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 
     @Test
@@ -85,6 +85,6 @@ public class PasswordValidationServiceTest {
         Password passwordUser = new Password("Andy 1968*");
         boolean validPassword = passwordService.validatePassword(passwordUser);
 
-        Assertions.assertEquals(validPassword,false);
+        Assertions.assertFalse(validPassword);
     }
 }
