@@ -7,7 +7,7 @@ API web em Java e Springboot que realiza a validação de senhas.
 
 A API apresenta um método HTTP POST que recebe as solicitações do cliente e retorna a verificação de validação da senha, sendo essa um boolean true ou false.
 
-A construção da API apresenta uma interpretação da arquiteutra hexagonal, tendo sido dividida em 3 principais camadas: core, port e adaptor.
+A construção da API apresenta uma interpretação da arquitetura hexagonal, tendo sido dividida em 3 principais camadas: core, port e adaptor.
 
 As regras de validação de senha foram tratadas como regras de negócio presentes na camada de serviço, no core da aplicação. 
 
